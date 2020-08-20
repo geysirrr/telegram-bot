@@ -1,5 +1,3 @@
-const { getHourMessage } = require('./messages');
-
 const intervalTimeChecker = (bot) => {
   let hour = new Date().getHours();
 
@@ -17,7 +15,10 @@ const intervalTimeChecker = (bot) => {
 
     if (hour !== currentHour) {
       hour = currentHour;
-      bot.sendMessage(process.env.CHAT_ID, getHourMessage(hour));
+      bot.sendMessage(
+        process.env.CHAT_ID,
+        hour === 12 ? '점심 시간입니다.' : `${hour}시 입니다.`
+      );
     }
   }, 1000);
 };
